@@ -11,6 +11,6 @@ import db from "@astrojs/db";
 export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), db()],
-  output: "hybrid",
+  output: "static",
   adapter: cloudflare()
 });
