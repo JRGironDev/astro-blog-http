@@ -15,10 +15,12 @@
     "@astrojs/mdx": "^3.1.1",
     "@astrojs/rss": "^4.0.6",
     "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/vue": "^5.0.5",
     "@prisma/client": "^6.2.1",
     "astro": "^4.10.3",
     "typescript": "^5.4.5",
-    "uuid": "^11.0.5"
+    "uuid": "^11.0.5",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "prisma": "^6.2.1"
