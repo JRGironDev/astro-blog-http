@@ -11,6 +11,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import confetti from 'canvas-confetti';
+import { actions } from 'astro:actions';
 
   interface Props {
     postId: string;
@@ -24,6 +25,12 @@ import confetti from 'canvas-confetti';
 
   const likePost = async () => {
     console.log('Like +1');
+
+    await actions.obtenerSaludo({
+      age: 40,
+      name: 'José',
+      isActive: true,
+    })
 
     likeCount.value++;
     likeClicks.value++;
