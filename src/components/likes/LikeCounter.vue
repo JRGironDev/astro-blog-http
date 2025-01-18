@@ -24,15 +24,6 @@ import { actions } from 'astro:actions';
   const isLoading = ref(true)
 
   const likePost = async () => {
-    console.log('Like +1');
-
-    const data = await actions.obtenerSaludo.orThrow({
-      age: 40,
-      name: 'José',
-      isActive: true,
-    })
-
-    console.log(data);
 
     likeCount.value++;
     likeClicks.value++;
@@ -47,7 +38,12 @@ import { actions } from 'astro:actions';
   }
 
   const getCurrentLikes = async () => {
-    console.log(`Fecthing likes ${props.postId}`);
+    const { data, error } = await actions.getLikes(props.postId);
+    if (error) {
+      return alert('No se pudo obtener el post id');
+    }
+
+    likeCount.value = data.likes;
 
     isLoading.value = false;
   }
