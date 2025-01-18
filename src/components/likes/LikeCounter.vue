@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import confetti from 'canvas-confetti';
 import { actions } from 'astro:actions';
 
@@ -22,6 +22,17 @@ import { actions } from 'astro:actions';
   const likeCount = ref(0)
   const likeClicks = ref(0)
   const isLoading = ref(true)
+
+  watch( likeClicks, (newValue, oldValue) => {
+    console.log('likeCount changed', newValue, oldValue);
+    // Server action
+    actions.updateLikeCount({
+      increment: likeClicks.value,
+      postId: props.postId,
+    });
+
+    //likeCount.value = 0;
+  });
 
   const likePost = async () => {
 
