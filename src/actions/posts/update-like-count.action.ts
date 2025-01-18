@@ -23,7 +23,8 @@ export const updateLikeCount = defineAction({
                 likes: increment,
                 title: 'New post',
               }
-            });
+            })
+            
             return newPost;
           }
 

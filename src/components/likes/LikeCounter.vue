@@ -12,6 +12,7 @@
 import { ref, watch } from 'vue';
 import confetti from 'canvas-confetti';
 import { actions } from 'astro:actions';
+import debounce from 'lodash.debounce';
 
   interface Props {
     postId: string;
@@ -23,21 +24,22 @@ import { actions } from 'astro:actions';
   const likeClicks = ref(0)
   const isLoading = ref(true)
 
-  watch( likeClicks, (newValue, oldValue) => {
-    console.log('likeCount changed', newValue, oldValue);
+  watch( likeCount, debounce((newValue, oldValue) => {
+    console.log(`Enviando ${likeClicks.value} likes a la API` )
     // Server action
     actions.updateLikeCount({
       increment: likeClicks.value,
       postId: props.postId,
     });
 
-    //likeCount.value = 0;
-  });
+    likeClicks.value = 0;
+  }, 500)
+);
 
   const likePost = async () => {
-
-    likeCount.value++;
-    likeClicks.value++;
+    console.log(`Like + 1` )
+    likeCount.value += 1;
+    likeClicks.value += 1;
 
     confetti({
       particleCount: 100,
