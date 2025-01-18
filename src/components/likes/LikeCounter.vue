@@ -26,11 +26,13 @@ import { actions } from 'astro:actions';
   const likePost = async () => {
     console.log('Like +1');
 
-    await actions.obtenerSaludo({
+    const data = await actions.obtenerSaludo.orThrow({
       age: 40,
       name: 'José',
       isActive: true,
     })
+
+    console.log(data);
 
     likeCount.value++;
     likeClicks.value++;
